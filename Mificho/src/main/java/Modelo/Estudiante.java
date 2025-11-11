@@ -17,9 +17,7 @@ public class Estudiante {
     private double saldo; // saldo disponible en la cuenta del estudiante
     private ArrayList<Ficho> historialFichos; // lista de fichos o pedidos realizados
 
-    // =======================
-    // Constructor
-    // =======================
+    
     public Estudiante(String nombre, String documento, String correo, String contrasena) {
         this.nombre = nombre;
         this.documento = documento;
@@ -29,9 +27,7 @@ public class Estudiante {
         this.historialFichos = new ArrayList<>();
     }
 
-    // =======================
-    // Métodos Get y Set
-    // =======================
+   
     public String getNombre() {
         return nombre;
     }
