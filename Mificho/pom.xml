@@ -10,4 +10,16 @@
         <maven.compiler.release>23</maven.compiler.release>
         <exec.mainClass>com.mycompany.mificho.Mificho</exec.mainClass>
     </properties>
+<dependencies>
+<dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>21</version>
+        </dependency>
+<dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>21</version>
+        </dependency>
+    </dependencies>
 </project>

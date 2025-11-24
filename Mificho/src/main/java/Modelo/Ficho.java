@@ -11,7 +11,6 @@ import java.time.LocalDate;
  */
 public class Ficho {
         private int idFicho;
-    private Estudiante estudiante;
     private Producto producto;
     private LocalDate fecha;
     private boolean utilizado;
@@ -19,9 +18,9 @@ public class Ficho {
     public Ficho() {
     }
 
-    public Ficho(int idFicho, Estudiante estudiante, Producto producto, LocalDate fecha, boolean utilizado) {
+    public Ficho(int idFicho, Producto producto, LocalDate fecha, boolean utilizado) {
         this.idFicho = idFicho;
-        this.estudiante = estudiante;
+       
         this.producto = producto;
         this.fecha = fecha;
         this.utilizado = utilizado;
@@ -35,13 +34,7 @@ public class Ficho {
         this.idFicho = idFicho;
     }
 
-    public Estudiante getEstudiante() {
-        return estudiante;
-    }
-
-    public void setEstudiante(Estudiante estudiante) {
-        this.estudiante = estudiante;
-    }
+    
 
     public Producto getProducto() {
         return producto;
@@ -67,9 +60,5 @@ public class Ficho {
         this.utilizado = utilizado;
     }
 
-    @Override
-    public String toString() {
-        return "Ficho #" + idFicho + " - " + estudiante.getNombre() + " - " + producto.getNombre() + 
-               " - Fecha: " + fecha + (utilizado ? " (Usado)" : " (Disponible)");
-    }   
+    
 }

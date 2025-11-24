@@ -7,6 +7,7 @@ package Utils;
 /**
  *
  * @author PC
+ * @param <T>
  */
 public class Nodo <T>{
     private T dato;

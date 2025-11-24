@@ -96,6 +96,7 @@ public class ListaEnlazada <T> {
             throw new IndexOutOfBoundsException("fuera de rango");
             
         }
+        Nodo<T> actual = cabeza;
         return actual.getDato();
     }
     public Object [] arreglo(){
