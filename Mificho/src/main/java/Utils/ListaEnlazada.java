@@ -91,14 +91,16 @@ public class ListaEnlazada <T> {
         return cabeza == null;
     }
     
-    public T obtener (int indice){
-        if (indice < 0 || indice >= tamaño){
-            throw new IndexOutOfBoundsException("fuera de rango");
-            
-        }
-        Nodo<T> actual = cabeza;
-        return actual.getDato();
+   public T obtener (int indice){
+    if (indice < 0 || indice >= tamaño){
+        throw new IndexOutOfBoundsException("fuera de rango");
     }
+    Nodo<T> actual = cabeza;
+    for (int i = 0; i < indice; i++) { 
+        actual = actual.getSiguiente();
+    }
+    return actual.getDato();
+}
     public Object [] arreglo(){
         Object [] arreglo = new Object [tamaño];
         Nodo<T> actual = cabeza;

@@ -9,58 +9,86 @@ package Modelo;
  * @author PC
  */
 public class Producto {
-    private String codigo;
+     private String id;
     private String nombre;
-    private double precio;
-    private String categoria;
-
-    // Constructor vacío
+    private String tipo; 
+    private String fecha; 
+    private String descripcion;
     public Producto() {
     }
 
-    // Constructor con parámetros
-    public Producto(String codigo, String nombre, double precio, String categoria) {
-        this.codigo = codigo;
+    public Producto(String id, String nombre, String tipo, String fecha, String descripcion) {
+        this.id = id;
         this.nombre = nombre;
-        this.precio = precio;
-        this.categoria = categoria;
+        this.tipo = tipo;
+        this.fecha = fecha;
+        this.descripcion = descripcion;
     }
-
-    // Getters y Setters
-    public String getCodigo() {
-        return codigo;
+    
+    public String getId() {
+        return id;
     }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    
+    public void setId(String id) {
+        this.id = id;
     }
-
+    
     public String getNombre() {
         return nombre;
     }
-
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public double getPrecio() {
-        return precio;
+    
+    public String getTipo() {
+        return tipo;
     }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
-
-    public String getCategoria() {
-        return categoria;
+    
+    public String getFecha() {
+        return fecha;
     }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
-
+    
+    public String getDescripcion() {
+        return descripcion;
+    }
+    
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+    public boolean esAlmuerzo1() {
+        return "almuerzo1".equalsIgnoreCase(tipo);
+    }
+    
+    public boolean esAlmuerzo2() {
+        return "almuerzo2".equalsIgnoreCase(tipo);
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Producto producto = (Producto) obj;
+        return id.equals(producto.id);
+    }
+    
     @Override
     public String toString() {
-        return nombre + " (" + categoria + ") - $" + precio;
+        return "Producto{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", fecha='" + fecha + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
     }
 }

@@ -86,7 +86,7 @@ public class VistaLogin {
         return txtId;
     }
     
-    public PasswordField getTxtContrasena() {
+    public PasswordField getTxtContraseña() {
         return txtContraseña;
     }
     

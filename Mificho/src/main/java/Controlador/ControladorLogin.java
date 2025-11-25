@@ -6,6 +6,7 @@ package Controlador;
 import Datos.ServicioUsuario;
 import Modelo.Usuario;
 import Vista.VistaLogin;
+import javafx.stage.Stage;
 /**
  *
  * @author maria
@@ -24,12 +25,12 @@ public class ControladorLogin {
     }
     private void iniciarSesion() {
         String id = vista.getTxtId().getText().trim();
-        String contrasena = vista.getTxtContrasena().getText().trim();
-        if (id.isEmpty() || contrasena.isEmpty()) {
+        String contraseña = vista.getTxtContraseña().getText().trim();
+        if (id.isEmpty() || contraseña.isEmpty()) {
             vista.mostrarMensaje("Por favor complete todos los campos", true);
             return;
         }
-        Usuario usuario = usuarioservicio.autenticar(id, contrasena);
+        Usuario usuario = usuarioservicio.auntenticar(id, contraseña);
         
         if (usuario != null) {
             vista.mostrarMensaje("Bienvenido " + usuario.getNombre(), false);
@@ -37,7 +38,7 @@ public class ControladorLogin {
         redirigirSegunRol(usuario);
         } else {
             vista.mostrarMensaje("ID o contraseña incorrectos", true);
-            vista.getTxtContrasena().clear();
+            vista.getTxtContraseña().clear();
             vista.getTxtId().requestFocus();
         }
         
@@ -46,7 +47,7 @@ public class ControladorLogin {
         try {
             Thread.sleep(500);
             
-            if (usuario.esAdministrador()) {
+            if (usuario.esAdmin()) {
                 abrirDashboardAdministrador(usuario);
             } else if (usuario.esEstudiante()) {
                 abrirDashboardEstudiante(usuario);

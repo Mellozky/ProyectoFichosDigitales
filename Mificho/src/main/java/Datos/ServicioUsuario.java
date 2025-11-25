@@ -25,7 +25,7 @@ public class ServicioUsuario {
     }
     
     private void inicializarUsuarios(){
-        usuarios.agregar (new Usuario("A001", "Admin", "admin12", "administrador"));
+        usuarios.agregar (new Usuario("A001", "Admin", "admin123", "administrador"));
         
         usuarios.agregar(new Usuario("E001", "Juan Pérez", "juan123", "estudiante"));
         usuarios.agregar(new Usuario("E002", "María García", "maria123", "estudiante"));
@@ -34,7 +34,7 @@ public class ServicioUsuario {
         usuarios.agregar(new Usuario("E005", "Pedro Rodríguez", "pedro123", "estudiante"));
     }
     
-    public Usuario auntenticador (String id, String contraseña){
+    public Usuario auntenticar (String id, String contraseña){
         Usuario usuario = usuarios.buscar(u -> u.getId().equals(id));
         if (usuario != null &&usuario.getContraseña().equals (contraseña)){
             return usuario;
