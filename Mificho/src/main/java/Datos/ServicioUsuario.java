@@ -13,7 +13,7 @@ public class ServicioUsuario {
     private ListaEnlazada<Usuario> usuarios;
     private static ServicioUsuario instancia;
     
-    private ServicioUsuario(){
+    public ServicioUsuario(){
         usuarios = new ListaEnlazada <>();
          inicializarUsuarios();
     }

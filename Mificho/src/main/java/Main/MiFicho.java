@@ -20,7 +20,7 @@ public class MiFicho extends Application{
       
     @Override
     public void start(Stage primaryStage) {
-        VistaLogin loginvista = new VistaLogin(primaryStage);
+        VistaLogin loginvista = new VistaLogin();
         new ControladorLogin(loginvista);
         loginvista.mostrar();
     }

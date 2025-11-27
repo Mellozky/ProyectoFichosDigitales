@@ -1,64 +1,64 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controlador;
-import Modelo.Usuario;
-import Vista.*;
-import javafx.stage.Stage;
 
-/**
- *
- * @author maria
- */
+import Vista.VistaAdmin;
+import javafx.application.Platform;
+
 public class ControladorAdmin {
     private VistaAdmin vista;
-    private Usuario admin;
     
-    
-    
-    public ControladorAdmin (VistaAdmin vista, Usuario admin){
+    public ControladorAdmin(VistaAdmin vista) {
         this.vista = vista;
-        this.admin = admin;
-        inicializarEventos();
-                
-                
-    }
-            
-      private void inicializarEventos() {
-        vista.getBtnGestionProductos().setOnAction(e -> abrirGestionProductos());
-        vista.getBtnGestionFichos().setOnAction(e -> abrirGestionFichos());
-        vista.getBtnCerrarSesion().setOnAction(e -> cerrarSesion());
+        inicializar();
     }
     
-   
-    private void abrirGestionProductos() {
-        Stage stageProductos = new Stage();
-        VistaCatalogo catalogo = new VistaCatalogo(stageProductos);
-        ControladorCatalogo catalogocontrolador = new ControladorCatalogo(VistaCatalogo);
-        catalogo.mostrar();
-    }
-    
-  
-    private void abrirGestionFichos() {
-        System.out.println("Abriendo gestión de fichos...");
+    private void inicializar() {
+        // Cerrar sesión - vuelve al login
+        vista.btnCerrarSesion.setOnAction(event -> {
+            vista.cerrar();
+            // Si quieres volver al login, deberías abrirlo aquí
+            // new VistaLogin().mostrar();
+        });
         
-        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(
-            javafx.scene.control.Alert.AlertType.INFORMATION
-        );
-        alert.setTitle("Información");
-        alert.setHeaderText("Gestión de Fichos");
-        alert.setContentText("Esta funcionalidad se implementará en el próximo commit.");
-        alert.showAndWait();
-    }
-    
-   
-    private void cerrarSesion() {
-        vista.cerrar();
+        // Botones de selección
+        vista.btnSeleccionarAlmuerzo1.setOnAction(event -> {
+            System.out.println("Admin - Seleccionado Almuerzo 1");
+            // Aquí irá la lógica para seleccionar almuerzo 1
+        });
         
-        Stage loginStage = new Stage();
-        VistaLogin loginvista = new VistaLogin(loginStage);
-        ControladorLogin loginControlador = new ControladorLogin(loginvista);
-        loginvista.mostrar();
+        vista.btnSeleccionarAlmuerzo2.setOnAction(event -> {
+            System.out.println("Admin - Seleccionado Almuerzo 2");
+            // Aquí irá la lógica para seleccionar almuerzo 2
+        });
+        
+        vista.btnSeleccionarBebida1.setOnAction(event -> {
+            System.out.println("Admin - Seleccionada Bebida 1");
+            // Aquí irá la lógica para seleccionar bebida
+        });
+        
+        vista.btnSeleccionarApetitivo1.setOnAction(event -> {
+            System.out.println("Admin - Seleccionado Apetitivo 1");
+            // Aquí irá la lógica para seleccionar apetitivo
+        });
+        
+        // Botones de edición (admin tiene acceso completo)
+        vista.btnEditarAlmuerzo1.setOnAction(event -> {
+            System.out.println("Admin - Editar Almuerzo 1");
+            // Aquí irá la lógica para abrir ventana de edición
+        });
+        
+        vista.btnEditarAlmuerzo2.setOnAction(event -> {
+            System.out.println("Admin - Editar Almuerzo 2");
+            // Aquí irá la lógica para abrir ventana de edición
+        });
+        
+        vista.btnEditarBebida1.setOnAction(event -> {
+            System.out.println("Admin - Editar Bebida 1");
+            // Aquí irá la lógica para abrir ventana de edición
+        });
+        
+        vista.btnEditarApetitivo1.setOnAction(event -> {
+            System.out.println("Admin - Editar Apetitivo 1");
+            // Aquí irá la lógica para abrir ventana de edición
+        });
     }
 }

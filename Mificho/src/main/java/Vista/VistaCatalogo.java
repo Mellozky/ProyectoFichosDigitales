@@ -1,237 +1,174 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Vista;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import Modelo.Producto;
-/**
- *
- * @author maria
- */
+
 public class VistaCatalogo {
-      private Stage stage;
-    private TableView<Producto> tablaProductos;
-    private TextField txtId;
-    private TextField txtNombre;
-    private ComboBox<String> cmbTipo;
-    private DatePicker dpFecha;
-    private TextArea txtDescripcion;
-    private Button btnAgregar;
-    private Button btnEditar;
-    private Button btnEliminar;
-    private Button btnLimpiar;
-    private Button btnVolver;
-    private Label lblMensaje;
-    
-     public VistaCatalogo (Stage stage) {
-        this.stage = stage;
-        inicializarComponentes();
+
+    private Stage stageCatalogo;
+    public TextField txtBuscar;
+    public Button btnSeleccionarAlmuerzo1;
+    public Button btnSeleccionarAlmuerzo2;
+    public Button btnSeleccionarBebida1;
+    public Button btnSeleccionarApetitivo1;
+    public Button btnEditarAlmuerzo1;
+    public Button btnEditarAlmuerzo2;
+    public Button btnEditarBebida1;
+    public Button btnEditarApetitivo1;
+    public Button btnCerrarSesion;
+    private boolean esAdmin;
+
+    public VistaCatalogo(boolean admin) {
+        this.esAdmin = admin;
+        this.stageCatalogo = new Stage();
+        construirInterfaz();
     }
-    
-    private void inicializarComponentes() {
-        Label lblTitulo = new Label("Gestión de Productos / Menús");
-        lblTitulo.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-        
-        tablaProductos = new TableView<>();
-        tablaProductos.setPrefHeight(300);
-        
-        TableColumn<Producto, String> colId = new TableColumn<>("ID");
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colId.setPrefWidth(80);
-        
-        TableColumn<Producto, String> colNombre = new TableColumn<>("Nombre");
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colNombre.setPrefWidth(180);
-        
-        TableColumn<Producto, String> colTipo = new TableColumn<>("Tipo");
-        colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        colTipo.setPrefWidth(100);
-        
-        TableColumn<Producto, String> colFecha = new TableColumn<>("Fecha");
-        colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-        colFecha.setPrefWidth(100);
-        
-        TableColumn<Producto, String> colDescripcion = new TableColumn<>("Descripción");
-        colDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-        colDescripcion.setPrefWidth(250);
-        
-        tablaProductos.getColumns().addAll(colId, colNombre, colTipo, colFecha, colDescripcion);
-        
-        GridPane formulario = new GridPane();
-        formulario.setHgap(10);
-        formulario.setVgap(10);
-        formulario.setPadding(new Insets(20));
-        
-        Label lblIdForm = new Label("ID:");
-        txtId = new TextField();
-        txtId.setPromptText("Ej: P001");
-        txtId.setDisable(true);
-        
-        Label lblNombreForm = new Label("Nombre:");
-        txtNombre = new TextField();
-        txtNombre.setPromptText("Ej: Arroz con Pollo");
-        txtNombre.setPrefWidth(200);
-        
-        Label lblTipoForm = new Label("Tipo:");
-        cmbTipo = new ComboBox<>();
-        cmbTipo.getItems().addAll("almuerzo1", "almuerzo2");
-        cmbTipo.setPromptText("Seleccione tipo");
-        cmbTipo.setPrefWidth(200);
-        
-        Label lblFechaForm = new Label("Fecha:");
-        dpFecha = new DatePicker();
-        dpFecha.setPromptText("Seleccione fecha");
-        dpFecha.setPrefWidth(200);
-        
-        Label lblDescripcionForm = new Label("Descripción:");
-        txtDescripcion = new TextArea();
-        txtDescripcion.setPromptText("Descripción del menú");
-        txtDescripcion.setPrefRowCount(3);
-        txtDescripcion.setPrefWidth(200);
-        txtDescripcion.setWrapText(true);
-        
-        formulario.add(lblIdForm, 0, 0);
-        formulario.add(txtId, 1, 0);
-        formulario.add(lblNombreForm, 0, 1);
-        formulario.add(txtNombre, 1, 1);
-        formulario.add(lblTipoForm, 0, 2);
-        formulario.add(cmbTipo, 1, 2);
-        formulario.add(lblFechaForm, 0, 3);
-        formulario.add(dpFecha, 1, 3);
-        formulario.add(lblDescripcionForm, 0, 4);
-        formulario.add(txtDescripcion, 1, 4);
-        
-        btnAgregar = new Button("Agregar");
-        btnAgregar.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
-        btnAgregar.setPrefWidth(100);
-        
-        btnEditar = new Button("Editar");
-        btnEditar.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
-        btnEditar.setPrefWidth(100);
-        btnEditar.setDisable(true);
-        
-        btnEliminar = new Button("Eliminar");
-        btnEliminar.setStyle("-fx-background-color: #f44336; -fx-text-fill: white;");
-        btnEliminar.setPrefWidth(100);
-        btnEliminar.setDisable(true);
-        
-        btnLimpiar = new Button("Limpiar");
-        btnLimpiar.setStyle("-fx-background-color: #9E9E9E; -fx-text-fill: white;");
-        btnLimpiar.setPrefWidth(100);
-        
-        HBox botonesAccion = new HBox(10);
-        botonesAccion.setAlignment(Pos.CENTER);
-        botonesAccion.getChildren().addAll(btnAgregar, btnEditar, btnEliminar, btnLimpiar);
-        
-        lblMensaje = new Label();
-        lblMensaje.setStyle("-fx-font-size: 12px;");
-        
-        VBox panelFormulario = new VBox(10);
-        panelFormulario.setPadding(new Insets(10));
-        panelFormulario.getChildren().addAll(formulario, botonesAccion, lblMensaje);
-        panelFormulario.setStyle("-fx-border-color: #CCCCCC; -fx-border-width: 1; -fx-background-color: #F5F5F5;");
-        
-        btnVolver = new Button("← Volver al Panel");
-        btnVolver.setStyle("-fx-background-color: #607D8B; -fx-text-fill: white;");
-        
-        HBox header = new HBox(20);
-        header.setAlignment(Pos.CENTER_LEFT);
-        header.setPadding(new Insets(10));
-        header.getChildren().addAll(btnVolver, lblTitulo);
-        
+
+    private void construirInterfaz() {
         BorderPane root = new BorderPane();
-        root.setTop(header);
-        root.setCenter(tablaProductos);
-        root.setBottom(panelFormulario);
-        root.setPadding(new Insets(10));
-        
-        Scene scene = new Scene(root, 800, 700);
-        stage.setScene(scene);
-        stage.setTitle("Catálogo de Productos");
-    }
-    
-    public TableView<Producto> getTablaProductos() {
-        return tablaProductos;
-    }
-    
-    public TextField getTxtId() {
-        return txtId;
-    }
-    
-    public TextField getTxtNombre() {
-        return txtNombre;
-    }
-    
-    public ComboBox<String> getCmbTipo() {
-        return cmbTipo;
-    }
-    
-    public DatePicker getDpFecha() {
-        return dpFecha;
-    }
-    
-    public TextArea getTxtDescripcion() {
-        return txtDescripcion;
-    }
-    
-    public Button getBtnAgregar() {
-        return btnAgregar;
-    }
-    
-    public Button getBtnEditar() {
-        return btnEditar;
-    }
-    
-    public Button getBtnEliminar() {
-        return btnEliminar;
-    }
-    
-    public Button getBtnLimpiar() {
-        return btnLimpiar;
-    }
-    
-    public Button getBtnVolver() {
-        return btnVolver;
-    }
-    
-    public void mostrarMensaje(String mensaje, boolean esError) {
-        lblMensaje.setText(mensaje);
-        if (esError) {
-            lblMensaje.setStyle("-fx-text-fill: red; -fx-font-size: 12px;");
-        } else {
-            lblMensaje.setStyle("-fx-text-fill: green; -fx-font-size: 12px;");
+        root.setStyle("-fx-background-color: #F5F5F5;");
+
+        VBox menuLateral = new VBox(15);
+        menuLateral.setPrefWidth(200);
+        menuLateral.setPadding(new Insets(20));
+        menuLateral.setStyle("-fx-background-color: #E1F5D0;");
+
+        Label lblMenu = new Label("MENU");
+        lblMenu.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+
+        ImageView logo = new ImageView();
+        try {
+            Image imagenLogo = new Image(getClass().getResourceAsStream("/Recursos/logo.png"));
+            logo.setImage(imagenLogo);
+            logo.setFitHeight(90);
+            logo.setPreserveRatio(true);
+        } catch (Exception e) {
+            logo.setFitHeight(90);
+            logo.setFitWidth(90);
         }
+
+        Label seleccionHoy = new Label("Selección de hoy");
+        seleccionHoy.setStyle("-fx-background-color: #7ED957; -fx-text-fill: white; -fx-padding: 8 10; -fx-background-radius: 15;");
+
+        Label comprar = new Label("Comprar ficho");
+        Label cancelar = new Label("Cancelar ficho");
+        Label carrito = new Label("Ver mi carrito");
+        Label deseados = new Label("Lista de deseados");
+        Label historial = new Label("Ver historial de compra");
+
+        VBox opciones = new VBox(6, seleccionHoy, comprar, cancelar, carrito, deseados, historial);
+
+        btnCerrarSesion = new Button("Cerrar sesión");
+        btnCerrarSesion.setStyle("-fx-background-color: #7ED957; -fx-text-fill: white; -fx-background-radius: 15;");
+        btnCerrarSesion.setPrefWidth(130);
+
+        menuLateral.getChildren().addAll(lblMenu, logo, opciones, btnCerrarSesion);
+
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setFitToWidth(true);
+        scrollPane.setStyle("-fx-background: #F5F5F5; -fx-background-color: #F5F5F5;");
+
+        VBox centro = new VBox(20);
+        centro.setPadding(new Insets(20));
+
+        txtBuscar = new TextField();
+        txtBuscar.setPromptText("BUSCAR");
+        txtBuscar.setPrefWidth(400);
+        txtBuscar.setStyle("-fx-background-radius: 20;");
+
+        ImageView imgAlm1 = cargarImagen("/Recursos/Almuerzo1.png", 250);
+        ImageView imgAlm2 = cargarImagen("/Recursos/Almuerzo2.png", 250);
+        ImageView imgBebida = cargarImagen("/Recursos/Bebida1.png", 150);
+        ImageView imgApetitivo = cargarImagen("/Recursos/Apetitivo1.png", 150);
+
+        btnSeleccionarAlmuerzo1 = new Button("Seleccionar");
+        btnSeleccionarAlmuerzo2 = new Button("Seleccionar");
+        btnSeleccionarBebida1 = new Button("Seleccionar");
+        btnSeleccionarApetitivo1 = new Button("Seleccionar");
+
+        estilizarBotonVerde(btnSeleccionarAlmuerzo1);
+        estilizarBotonVerde(btnSeleccionarAlmuerzo2);
+        estilizarBotonVerde(btnSeleccionarBebida1);
+        estilizarBotonVerde(btnSeleccionarApetitivo1);
+
+        btnEditarAlmuerzo1 = new Button("Editar");
+        btnEditarAlmuerzo2 = new Button("Editar");
+        btnEditarBebida1 = new Button("Editar");
+        btnEditarApetitivo1 = new Button("Editar");
+
+        estilizarBotonVerde(btnEditarAlmuerzo1);
+        estilizarBotonVerde(btnEditarAlmuerzo2);
+        estilizarBotonVerde(btnEditarBebida1);
+        estilizarBotonVerde(btnEditarApetitivo1);
+
+        if (!esAdmin) {
+            btnEditarAlmuerzo1.setVisible(false);
+            btnEditarAlmuerzo2.setVisible(false);
+            btnEditarBebida1.setVisible(false);
+            btnEditarApetitivo1.setVisible(false);
+        }
+
+        HBox fila1 = new HBox(40);
+        fila1.setAlignment(Pos.CENTER);
+
+        VBox alm1Box = new VBox(5, imgAlm1, btnSeleccionarAlmuerzo1, btnEditarAlmuerzo1);
+        alm1Box.setAlignment(Pos.CENTER);
+
+        VBox alm2Box = new VBox(5, imgAlm2, btnSeleccionarAlmuerzo2, btnEditarAlmuerzo2);
+        alm2Box.setAlignment(Pos.CENTER);
+
+        fila1.getChildren().addAll(alm1Box, alm2Box);
+
+        HBox fila2 = new HBox(40);
+        fila2.setAlignment(Pos.CENTER);
+
+        VBox bebBox = new VBox(5, imgBebida, btnSeleccionarBebida1, btnEditarBebida1);
+        bebBox.setAlignment(Pos.CENTER);
+
+        VBox apeBox = new VBox(5, imgApetitivo, btnSeleccionarApetitivo1, btnEditarApetitivo1);
+        apeBox.setAlignment(Pos.CENTER);
+
+        fila2.getChildren().addAll(bebBox, apeBox);
+
+        centro.getChildren().addAll(txtBuscar, fila1, fila2);
+        scrollPane.setContent(centro);
+
+        root.setLeft(menuLateral);
+        root.setCenter(scrollPane);
+
+        stageCatalogo.setScene(new Scene(root, 1000, 700));
+        stageCatalogo.setTitle("Catálogo");
     }
-    
-    public void limpiarFormulario() {
-        txtId.clear();
-        txtNombre.clear();
-        cmbTipo.setValue(null);
-        dpFecha.setValue(null);
-        txtDescripcion.clear();
-        lblMensaje.setText("");
-        btnEditar.setDisable(true);
-        btnEliminar.setDisable(true);
-        btnAgregar.setDisable(false);
+
+    private ImageView cargarImagen(String ruta, double ancho) {
+        ImageView imageView = new ImageView();
+        try {
+            Image imagen = new Image(getClass().getResourceAsStream(ruta));
+            imageView.setImage(imagen);
+            imageView.setFitWidth(ancho);
+            imageView.setPreserveRatio(true);
+        } catch (Exception e) {
+            imageView.setFitWidth(ancho);
+            imageView.setFitHeight(ancho * 0.7);
+        }
+        return imageView;
     }
-    
+
+    private void estilizarBotonVerde(Button b) {
+        b.setStyle("-fx-background-color: #7ED957; -fx-text-fill: white; -fx-background-radius: 20;");
+        b.setPrefWidth(120);
+    }
+
     public void mostrar() {
-        stage.show();
+        stageCatalogo.show();
     }
-    
+
     public void cerrar() {
-        stage.close();
+        stageCatalogo.close();
     }
 }
