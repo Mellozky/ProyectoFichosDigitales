@@ -21,6 +21,8 @@ public class VistaCatalogo {
     public Button btnEditarBebida1;
     public Button btnEditarApetitivo1;
     public Button btnCerrarSesion;
+    public Button btnHistorial;
+    public Button btnCarrito;
     private boolean esAdmin;
 
     public VistaCatalogo(boolean admin) {
@@ -57,17 +59,26 @@ public class VistaCatalogo {
 
         Label comprar = new Label("Comprar ficho");
         Label cancelar = new Label("Cancelar ficho");
-        Label carrito = new Label("Ver mi carrito");
         Label deseados = new Label("Lista de deseados");
-        Label historial = new Label("Ver historial de compra");
 
-        VBox opciones = new VBox(6, seleccionHoy, comprar, cancelar, carrito, deseados, historial);
+        VBox opciones = new VBox(6, seleccionHoy, comprar, cancelar, deseados);
+
+        btnCarrito = new Button("🛒 Ver Carrito");
+        btnCarrito.setStyle("-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 15;");
+        btnCarrito.setPrefWidth(160);
+
+        btnHistorial = new Button("📋 Ver Historial");
+        btnHistorial.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 15;");
+        btnHistorial.setPrefWidth(160);
 
         btnCerrarSesion = new Button("Cerrar sesión");
         btnCerrarSesion.setStyle("-fx-background-color: #7ED957; -fx-text-fill: white; -fx-background-radius: 15;");
-        btnCerrarSesion.setPrefWidth(130);
+        btnCerrarSesion.setPrefWidth(160);
 
-        menuLateral.getChildren().addAll(lblMenu, logo, opciones, btnCerrarSesion);
+        Region espaciador = new Region();
+        VBox.setVgrow(espaciador, Priority.ALWAYS);
+
+        menuLateral.getChildren().addAll(lblMenu, logo, opciones, btnCarrito, btnHistorial, espaciador, btnCerrarSesion);
 
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setFitToWidth(true);

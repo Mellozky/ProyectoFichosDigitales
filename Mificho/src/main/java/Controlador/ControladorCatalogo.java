@@ -1,17 +1,25 @@
 package Controlador;
 
-import Datos.ServicioUsuario;
+import Datos.ServicioCarrito;
+import Datos.ServicioProducto;
+import Modelo.Producto;
 import Vista.VistaCatalogo;
 import Vista.VistaHistorial;
-import javafx.application.Platform;
+import Vista.VistaCarrito;
+import javafx.scene.control.Alert;
 
 public class ControladorCatalogo {
     private VistaCatalogo vista;
     private String idEstudianteActual;
+    private ServicioCarrito servicioCarrito;
+    private ServicioProducto servicioProducto;
     
     public ControladorCatalogo(VistaCatalogo vista, String idEstudiante) {
         this.vista = vista;
         this.idEstudianteActual = idEstudiante;
+        this.servicioCarrito = ServicioCarrito.getInstancia();
+        this.servicioProducto = ServicioProducto.getInstancia();
+        servicioCarrito.setIdEstudiante(idEstudiante);
         inicializar();
     }
     
@@ -20,12 +28,20 @@ public class ControladorCatalogo {
             vista.cerrar();
         });
         
+        vista.btnCarrito.setOnAction(event -> {
+            abrirCarrito();
+        });
+        
+        vista.btnHistorial.setOnAction(event -> {
+            abrirHistorial();
+        });
+        
         vista.btnSeleccionarAlmuerzo1.setOnAction(event -> {
-            System.out.println("Seleccionado Almuerzo 1");
+            agregarAlCarrito("almuerzo1");
         });
         
         vista.btnSeleccionarAlmuerzo2.setOnAction(event -> {
-            System.out.println("Seleccionado Almuerzo 2");
+            agregarAlCarrito("almuerzo2");
         });
         
         vista.btnSeleccionarBebida1.setOnAction(event -> {
@@ -53,9 +69,35 @@ public class ControladorCatalogo {
         });
     }
     
+    private void agregarAlCarrito(String tipoMenu) {
+        String fechaHoy = servicioProducto.obtenerFechaHoy();
+        Producto producto = servicioProducto.obtenerMenuDelDia(fechaHoy, tipoMenu);
+        
+        if (producto != null) {
+            servicioCarrito.agregarProducto(producto, 1);
+            mostrarMensaje("✓ Producto agregado al carrito", Alert.AlertType.INFORMATION);
+        } else {
+            mostrarMensaje("⚠ No hay menú disponible para hoy", Alert.AlertType.WARNING);
+        }
+    }
+    
     public void abrirHistorial() {
         VistaHistorial vistaHistorial = new VistaHistorial(idEstudianteActual);
         new ControladorHistorial(vistaHistorial, idEstudianteActual);
         vistaHistorial.mostrar();
+    }
+    
+    public void abrirCarrito() {
+        VistaCarrito vistaCarrito = new VistaCarrito();
+        new ControladorCarrito(vistaCarrito);
+        vistaCarrito.mostrar();
+    }
+    
+    private void mostrarMensaje(String mensaje, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle("Información");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 }
