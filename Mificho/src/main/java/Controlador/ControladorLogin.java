@@ -6,6 +6,7 @@ import Vista.VistaLogin;
 import Vista.VistaCatalogo;
 import Vista.VistaAdmin;
 import javafx.stage.Stage;
+import Vista.VistaRegistro;
 
 public class ControladorLogin {
     private VistaLogin vista;
@@ -21,6 +22,11 @@ public class ControladorLogin {
     private void inicializarEventos() {
         vista.getBtnIngresar().setOnAction(event -> iniciarSesion());
         vista.getTxtContraseña().setOnAction(event -> iniciarSesion());
+         vista.getBtnRegistrarse().setOnAction(event -> {
+        VistaRegistro vistaRegistro = new VistaRegistro();
+        new ControladorRegistro(vistaRegistro);
+        vistaRegistro.mostrar();
+    });
     }
     
     private void iniciarSesion() {

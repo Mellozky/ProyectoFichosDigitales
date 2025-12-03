@@ -63,11 +63,11 @@ public class VistaCatalogo {
 
         VBox opciones = new VBox(6, seleccionHoy, comprar, cancelar, deseados);
 
-        btnCarrito = new Button("🛒 Ver Carrito");
+        btnCarrito = new Button(" Ver Carrito");
         btnCarrito.setStyle("-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 15;");
         btnCarrito.setPrefWidth(160);
 
-        btnHistorial = new Button("📋 Ver Historial");
+        btnHistorial = new Button(" Ver Historial");
         btnHistorial.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 15;");
         btnHistorial.setPrefWidth(160);
 

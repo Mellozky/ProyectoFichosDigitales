@@ -1,10 +1,10 @@
 package Modelo;
 
-public class Carrito {
+public class ItemCarrito {
     private Producto producto;
     private int cantidad;
     
-    public Carrito (Producto producto, int cantidad) {
+    public ItemCarrito (Producto producto, int cantidad) {
         this.producto = producto;
         this.cantidad = cantidad;
     }

@@ -86,9 +86,7 @@ public class ServicioFicho {
         return fichosEstudiante.arreglo();
     }
     
-    /**
-     * Obtiene fichos activos de un estudiante
-     */
+   
     public Object[] obtenerActivosPorEstudiante(String idEstudiante) {
         ListaEnlazada<Ficho> fichosActivos = new ListaEnlazada<>();
         

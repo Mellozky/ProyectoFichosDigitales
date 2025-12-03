@@ -1,6 +1,6 @@
 package Vista;
 
-import Modelo.Carrito;
+import Modelo.ItemCarrito;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class VistaCarrito {
     private Stage stage;
-    private TableView<Carrito> tablaCarrito;
+    private TableView<ItemCarrito> tablaCarrito;
     private Button btnVolver;
     private Button btnVaciar;
     private Button btnConfirmarCompra;
@@ -39,19 +39,19 @@ public class VistaCarrito {
         tablaCarrito = new TableView<>();
         tablaCarrito.setPrefHeight(350);
         
-        TableColumn<Carrito, String> colNombre = new TableColumn<>("Producto");
+        TableColumn<ItemCarrito, String> colNombre = new TableColumn<>("Producto");
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombreProducto"));
         colNombre.setPrefWidth(200);
         
-        TableColumn<Carrito, String> colTipo = new TableColumn<>("Tipo");
+        TableColumn<ItemCarrito, String> colTipo = new TableColumn<>("Tipo");
         colTipo.setCellValueFactory(new PropertyValueFactory<>("tipoProducto"));
         colTipo.setPrefWidth(120);
         
-        TableColumn<Carrito, String> colFecha = new TableColumn<>("Fecha");
+        TableColumn<ItemCarrito, String> colFecha = new TableColumn<>("Fecha");
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaProducto"));
         colFecha.setPrefWidth(120);
         
-        TableColumn<Carrito, Integer> colCantidad = new TableColumn<>("Cantidad");
+        TableColumn<ItemCarrito, Integer> colCantidad = new TableColumn<>("Cantidad");
         colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
         colCantidad.setPrefWidth(100);
         
@@ -109,7 +109,7 @@ public class VistaCarrito {
         stage.setTitle("Mi Carrito de Compras");
     }
     
-    public TableView<Carrito> getTablaCarrito() {
+    public TableView<ItemCarrito> getTablaCarrito() {
         return tablaCarrito;
     }
     

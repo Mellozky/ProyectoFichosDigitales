@@ -2,7 +2,7 @@ package Controlador;
 
 import Datos.ServicioCarrito;
 import Datos.ServicioFicho;
-import Modelo.Carrito;
+import Modelo.ItemCarrito;
 import Vista.VistaCarrito;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;

@@ -1,0 +1,7 @@
+A001|Admin|admin123|administrador
+E001|Juan Pérez|juan123|estudiante
+E002|María García|maria123|estudiante
+E003|Carlos López|carlos123|estudiante
+E004|Ana Martínez|ana123|estudiante
+E005|Pedro Rodríguez|pedro123|estudiante
+E007|Samuel|samuel|estudiante

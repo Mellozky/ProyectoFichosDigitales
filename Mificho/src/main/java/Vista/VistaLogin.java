@@ -81,6 +81,18 @@ private Stage stage;
         Label lblTitulo = new Label("INGRESAR");
         lblTitulo.setFont(Font.font("System", FontWeight.BOLD, 24));
         lblTitulo.setTextFill(Color.web("#333333"));
+        btnRegistrarse = new Button("Crear cuenta nueva");
+btnRegistrarse.setPrefWidth(200);
+btnRegistrarse.setPrefHeight(35);
+btnRegistrarse.setStyle(
+    "-fx-background-color: transparent;" +
+    "-fx-text-fill: #8BC34A;" +
+    "-fx-font-size: 13px;" +
+    "-fx-cursor: hand;" +
+    "-fx-underline: true;"
+);
+
+panel.getChildren().add(btnRegistrarse);
         
         Label lblSubtitulo = new Label("Iniciar Sesión");
         lblSubtitulo.setFont(Font.font("System", 14));
@@ -234,6 +246,11 @@ private Stage stage;
             lblMensaje.setTextFill(Color.web("#4CAF50"));
         }
     }
+    private Button btnRegistrarse;
+
+public Button getBtnRegistrarse() {
+    return btnRegistrarse;
+}
     
     public Stage getStage() {
         return stage;

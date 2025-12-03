@@ -1,11 +1,11 @@
 package Datos;
 
 import Modelo.Producto;
-import Modelo.Carrito;
+import Modelo.ItemCarrito;
 import Utils.ListaEnlazada;
 
 public class ServicioCarrito {
-    private ListaEnlazada<Carrito> items;
+    private ListaEnlazada<ItemCarrito> items;
     private static ServicioCarrito instancia;
     private String idEstudianteActual;
     
@@ -29,8 +29,8 @@ public class ServicioCarrito {
     }
     
     public boolean agregarProducto(Producto producto, int cantidad) {
-        Carrito existente = items.buscar(item -> 
-            item.Carrito().getId().equals(producto.getId())
+        ItemCarrito existente = items.buscar(item -> 
+            item.getProducto().getId().equals(producto.getId())
         );
         
         if (existente != null) {
@@ -40,14 +40,14 @@ public class ServicioCarrito {
                 existente
             );
         } else {
-            Carrito nuevoItem = new Carrito(producto, cantidad);
+            ItemCarrito nuevoItem = new ItemCarrito(producto, cantidad);
             items.agregar(nuevoItem);
             return true;
         }
     }
     
     public boolean eliminarProducto(String idProducto) {
-        Carrito item = items.buscar(i -> i.getProducto().getId().equals(idProducto));
+        ItemCarrito item = items.buscar(i -> i.getProducto().getId().equals(idProducto));
         if (item != null) {
             return items.eliminar(item);
         }
@@ -55,7 +55,7 @@ public class ServicioCarrito {
     }
     
     public boolean actualizarCantidad(String idProducto, int nuevaCantidad) {
-        Carrito item = items.buscar(i -> i.getProducto().getId().equals(idProducto));
+        ItemCarrito item = items.buscar(i -> i.getProducto().getId().equals(idProducto));
         if (item != null) {
             if (nuevaCantidad <= 0) {
                 return items.eliminar(item);
@@ -69,7 +69,7 @@ public class ServicioCarrito {
         return false;
     }
     
-    public ListaEnlazada<Carrito> obtenerTodos() {
+    public ListaEnlazada<ItemCarrito> obtenerTodos() {
         return items;
     }
     
