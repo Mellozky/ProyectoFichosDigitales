@@ -76,11 +76,11 @@ public class VistaCarrito {
         btnVolver.setStyle("-fx-background-color: #607D8B; -fx-text-fill: white; -fx-font-size: 14px;");
         btnVolver.setPrefWidth(120);
         
-        btnVaciar = new Button("🗑️ Vaciar Carrito");
+        btnVaciar = new Button("️ Vaciar Carrito");
         btnVaciar.setStyle("-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-size: 14px;");
         btnVaciar.setPrefWidth(150);
         
-        btnConfirmarCompra = new Button("✓ Confirmar Compra");
+        btnConfirmarCompra = new Button(" Confirmar Compra");
         btnConfirmarCompra.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;");
         btnConfirmarCompra.setPrefWidth(170);
         

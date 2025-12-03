@@ -24,6 +24,11 @@ public class VistaCatalogo {
     public Button btnHistorial;
     public Button btnCarrito;
     private boolean esAdmin;
+    public Button btnAgregarDeseados1;
+public Button btnAgregarDeseados2;
+public Button btnAgregarDeseados3;
+public Button btnAgregarDeseados4;
+public Button btnDeseados;
 
     public VistaCatalogo(boolean admin) {
         this.esAdmin = admin;
@@ -101,6 +106,16 @@ public class VistaCatalogo {
         btnSeleccionarAlmuerzo2 = new Button("Seleccionar");
         btnSeleccionarBebida1 = new Button("Seleccionar");
         btnSeleccionarApetitivo1 = new Button("Seleccionar");
+        
+        btnAgregarDeseados1 = new Button("agregar a deseados");
+btnAgregarDeseados2 = new Button("agregar a deseados");
+btnAgregarDeseados3 = new Button("agregar a deseados");
+btnAgregarDeseados4 = new Button("agregar a deseados");
+
+estilizarBotonCorazon(btnAgregarDeseados1);
+estilizarBotonCorazon(btnAgregarDeseados2);
+estilizarBotonCorazon(btnAgregarDeseados3);
+estilizarBotonCorazon(btnAgregarDeseados4);
 
         estilizarBotonVerde(btnSeleccionarAlmuerzo1);
         estilizarBotonVerde(btnSeleccionarAlmuerzo2);
@@ -123,14 +138,20 @@ public class VistaCatalogo {
             btnEditarBebida1.setVisible(false);
             btnEditarApetitivo1.setVisible(false);
         }
+        btnDeseados = new Button("️ Lista de Deseados");
+btnDeseados.setStyle("-fx-background-color: #E91E63; -fx-text-fill: white; -fx-background-radius: 15;");
+btnDeseados.setPrefWidth(160);
+
+menuLateral.getChildren().addAll(lblMenu, logo, opciones, btnDeseados, btnCarrito, btnHistorial, espaciador, btnCerrarSesion);
 
         HBox fila1 = new HBox(40);
         fila1.setAlignment(Pos.CENTER);
 
-        VBox alm1Box = new VBox(5, imgAlm1, btnSeleccionarAlmuerzo1, btnEditarAlmuerzo1);
+        VBox alm1Box = new VBox(5, imgAlm1, btnSeleccionarAlmuerzo1, btnAgregarDeseados1, btnEditarAlmuerzo1);
         alm1Box.setAlignment(Pos.CENTER);
 
-        VBox alm2Box = new VBox(5, imgAlm2, btnSeleccionarAlmuerzo2, btnEditarAlmuerzo2);
+       VBox alm2Box = new VBox(5, imgAlm2, btnSeleccionarAlmuerzo2, btnAgregarDeseados2, btnEditarAlmuerzo2);
+
         alm2Box.setAlignment(Pos.CENTER);
 
         fila1.getChildren().addAll(alm1Box, alm2Box);
@@ -138,10 +159,11 @@ public class VistaCatalogo {
         HBox fila2 = new HBox(40);
         fila2.setAlignment(Pos.CENTER);
 
-        VBox bebBox = new VBox(5, imgBebida, btnSeleccionarBebida1, btnEditarBebida1);
+        VBox bebBox = new VBox(5, imgBebida, btnSeleccionarBebida1, btnAgregarDeseados3, btnEditarBebida1);
+
         bebBox.setAlignment(Pos.CENTER);
 
-        VBox apeBox = new VBox(5, imgApetitivo, btnSeleccionarApetitivo1, btnEditarApetitivo1);
+VBox apeBox = new VBox(5, imgApetitivo, btnSeleccionarApetitivo1, btnAgregarDeseados4, btnEditarApetitivo1);
         apeBox.setAlignment(Pos.CENTER);
 
         fila2.getChildren().addAll(bebBox, apeBox);
@@ -169,6 +191,10 @@ public class VistaCatalogo {
         }
         return imageView;
     }
+    private void estilizarBotonCorazon(Button b) {
+    b.setStyle("-fx-background-color: #E91E63; -fx-text-fill: white; -fx-background-radius: 20; -fx-font-size: 16px;");
+    b.setPrefWidth(50);
+}
 
     private void estilizarBotonVerde(Button b) {
         b.setStyle("-fx-background-color: #7ED957; -fx-text-fill: white; -fx-background-radius: 20;");

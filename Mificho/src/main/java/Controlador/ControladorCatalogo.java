@@ -7,21 +7,27 @@ import Vista.VistaCatalogo;
 import Vista.VistaHistorial;
 import Vista.VistaCarrito;
 import javafx.scene.control.Alert;
+import Datos.ServicioDeseados;
+import Vista.VistaDeseados;
 
 public class ControladorCatalogo {
     private VistaCatalogo vista;
     private String idEstudianteActual;
     private ServicioCarrito servicioCarrito;
     private ServicioProducto servicioProducto;
-    
+    private ServicioDeseados servicioDeseados;
+
     public ControladorCatalogo(VistaCatalogo vista, String idEstudiante) {
         this.vista = vista;
         this.idEstudianteActual = idEstudiante;
         this.servicioCarrito = ServicioCarrito.getInstancia();
         this.servicioProducto = ServicioProducto.getInstancia();
+        this.servicioDeseados = ServicioDeseados.getInstancia();
+
         servicioCarrito.setIdEstudiante(idEstudiante);
         inicializar();
     }
+    
     
     private void inicializar() {
         vista.btnCerrarSesion.setOnAction(event -> {
@@ -67,6 +73,26 @@ public class ControladorCatalogo {
         vista.btnEditarApetitivo1.setOnAction(event -> {
             System.out.println("Editar Apetitivo 1");
         });
+        
+        vista.btnDeseados.setOnAction(event -> {
+    abrirDeseados();
+});
+
+vista.btnAgregarDeseados1.setOnAction(event -> {
+    agregarADeseados("almuerzo1");
+});
+
+vista.btnAgregarDeseados2.setOnAction(event -> {
+    agregarADeseados("almuerzo2");
+});
+
+vista.btnAgregarDeseados3.setOnAction(event -> {
+    System.out.println("Agregar bebida a deseados");
+});
+
+vista.btnAgregarDeseados4.setOnAction(event -> {
+    System.out.println("Agregar apetitivo a deseados");
+});
     }
     
     private void agregarAlCarrito(String tipoMenu) {
@@ -80,6 +106,7 @@ public class ControladorCatalogo {
             mostrarMensaje("⚠ No hay menú disponible para hoy", Alert.AlertType.WARNING);
         }
     }
+    
     
     public void abrirHistorial() {
         VistaHistorial vistaHistorial = new VistaHistorial(idEstudianteActual);
@@ -100,4 +127,26 @@ public class ControladorCatalogo {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+    
+    private void agregarADeseados(String tipoMenu) {
+    String fechaHoy = servicioProducto.obtenerFechaHoy();
+    Producto producto = servicioProducto.obtenerMenuDelDia(fechaHoy, tipoMenu);
+    
+    if (producto != null) {
+        if (servicioDeseados.agregarDeseado(idEstudianteActual, producto)) {
+            mostrarMensaje("❤ Producto agregado a deseados", Alert.AlertType.INFORMATION);
+        } else {
+            mostrarMensaje("El producto ya está en deseados", Alert.AlertType.WARNING);
+        }
+    } else {
+        mostrarMensaje("No hay menú disponible", Alert.AlertType.WARNING);
+    }
+}
+
+public void abrirDeseados() {
+    VistaDeseados vistaDeseados = new VistaDeseados(idEstudianteActual);
+    new ControladorDeseados(vistaDeseados, idEstudianteActual);
+    vistaDeseados.mostrar();
+}
+    
 }
