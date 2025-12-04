@@ -9,7 +9,6 @@ import Vista.VistaHistorial;
 import Vista.VistaCarrito;
 import Vista.VistaDeseados;
 import javafx.scene.control.Alert;
-import Vista.VistaCatalogo;
 
 public class ControladorEstudiante {
     private VistaEstudiante vista;

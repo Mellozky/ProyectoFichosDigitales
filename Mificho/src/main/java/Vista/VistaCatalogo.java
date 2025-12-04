@@ -23,12 +23,12 @@ public class VistaCatalogo {
     public Button btnCerrarSesion;
     public Button btnHistorial;
     public Button btnCarrito;
-    private boolean esAdmin;
+    public Button btnDeseados;
     public Button btnAgregarDeseados1;
-public Button btnAgregarDeseados2;
-public Button btnAgregarDeseados3;
-public Button btnAgregarDeseados4;
-public Button btnDeseados;
+    public Button btnAgregarDeseados2;
+    public Button btnAgregarDeseados3;
+    public Button btnAgregarDeseados4;
+    private boolean esAdmin;
 
     public VistaCatalogo(boolean admin) {
         this.esAdmin = admin;
@@ -64,15 +64,19 @@ public Button btnDeseados;
 
         Label comprar = new Label("Comprar ficho");
         Label cancelar = new Label("Cancelar ficho");
-        Label deseados = new Label("Lista de deseados");
+        Label deseadosLabel = new Label("Lista de deseados");
 
-        VBox opciones = new VBox(6, seleccionHoy, comprar, cancelar, deseados);
+        VBox opciones = new VBox(6, seleccionHoy, comprar, cancelar, deseadosLabel);
 
-        btnCarrito = new Button(" Ver Carrito");
+        btnDeseados = new Button("❤️ Lista de Deseados");
+        btnDeseados.setStyle("-fx-background-color: #E91E63; -fx-text-fill: white; -fx-background-radius: 15;");
+        btnDeseados.setPrefWidth(160);
+
+        btnCarrito = new Button("🛒 Ver Carrito");
         btnCarrito.setStyle("-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 15;");
         btnCarrito.setPrefWidth(160);
 
-        btnHistorial = new Button(" Ver Historial");
+        btnHistorial = new Button("📋 Ver Historial");
         btnHistorial.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 15;");
         btnHistorial.setPrefWidth(160);
 
@@ -83,7 +87,7 @@ public Button btnDeseados;
         Region espaciador = new Region();
         VBox.setVgrow(espaciador, Priority.ALWAYS);
 
-        menuLateral.getChildren().addAll(lblMenu, logo, opciones, btnCarrito, btnHistorial, espaciador, btnCerrarSesion);
+        menuLateral.getChildren().addAll(lblMenu, logo, opciones, btnDeseados, btnCarrito, btnHistorial, espaciador, btnCerrarSesion);
 
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setFitToWidth(true);
@@ -99,28 +103,42 @@ public Button btnDeseados;
 
         ImageView imgAlm1 = cargarImagen("/Recursos/Almuerzo1.png", 250);
         ImageView imgAlm2 = cargarImagen("/Recursos/Almuerzo2.png", 250);
-        ImageView imgBebida = cargarImagen("/Recursos/Bebida1.png", 150);
-        ImageView imgApetitivo = cargarImagen("/Recursos/Apetitivo1.png", 150);
+        ImageView imgBebida = cargarImagen("/Recursos/Bebida1.png", 200);
+        ImageView imgApetitivo = cargarImagen("/Recursos/Apetitivo1.png", 200);
+
+        System.out.println("=== VERIFICACIÓN DE IMÁGENES ===");
+        System.out.println("Almuerzo1 cargada: " + (imgAlm1.getImage() != null && !imgAlm1.getImage().isError()));
+        System.out.println("Almuerzo2 cargada: " + (imgAlm2.getImage() != null && !imgAlm2.getImage().isError()));
+        System.out.println("Bebida1 cargada: " + (imgBebida.getImage() != null && !imgBebida.getImage().isError()));
+        System.out.println("Apetitivo1 cargada: " + (imgApetitivo.getImage() != null && !imgApetitivo.getImage().isError()));
+        
+        if (imgBebida.getImage() != null) {
+            System.out.println("Bebida - Ancho: " + imgBebida.getFitWidth() + ", Alto: " + imgBebida.getFitHeight());
+        }
+        if (imgApetitivo.getImage() != null) {
+            System.out.println("Apetitivo - Ancho: " + imgApetitivo.getFitWidth() + ", Alto: " + imgApetitivo.getFitHeight());
+        }
+        System.out.println("================================");
 
         btnSeleccionarAlmuerzo1 = new Button("Seleccionar");
         btnSeleccionarAlmuerzo2 = new Button("Seleccionar");
         btnSeleccionarBebida1 = new Button("Seleccionar");
         btnSeleccionarApetitivo1 = new Button("Seleccionar");
-        
-        btnAgregarDeseados1 = new Button("agregar a deseados");
-btnAgregarDeseados2 = new Button("agregar a deseados");
-btnAgregarDeseados3 = new Button("agregar a deseados");
-btnAgregarDeseados4 = new Button("agregar a deseados");
-
-estilizarBotonCorazon(btnAgregarDeseados1);
-estilizarBotonCorazon(btnAgregarDeseados2);
-estilizarBotonCorazon(btnAgregarDeseados3);
-estilizarBotonCorazon(btnAgregarDeseados4);
 
         estilizarBotonVerde(btnSeleccionarAlmuerzo1);
         estilizarBotonVerde(btnSeleccionarAlmuerzo2);
         estilizarBotonVerde(btnSeleccionarBebida1);
         estilizarBotonVerde(btnSeleccionarApetitivo1);
+
+        btnAgregarDeseados1 = new Button("❤");
+        btnAgregarDeseados2 = new Button("❤");
+        btnAgregarDeseados3 = new Button("❤");
+        btnAgregarDeseados4 = new Button("❤");
+
+        estilizarBotonCorazon(btnAgregarDeseados1);
+        estilizarBotonCorazon(btnAgregarDeseados2);
+        estilizarBotonCorazon(btnAgregarDeseados3);
+        estilizarBotonCorazon(btnAgregarDeseados4);
 
         btnEditarAlmuerzo1 = new Button("Editar");
         btnEditarAlmuerzo2 = new Button("Editar");
@@ -138,33 +156,42 @@ estilizarBotonCorazon(btnAgregarDeseados4);
             btnEditarBebida1.setVisible(false);
             btnEditarApetitivo1.setVisible(false);
         }
-        btnDeseados = new Button("️ Lista de Deseados");
-btnDeseados.setStyle("-fx-background-color: #E91E63; -fx-text-fill: white; -fx-background-radius: 15;");
-btnDeseados.setPrefWidth(160);
-
-menuLateral.getChildren().addAll(lblMenu, logo, opciones, btnDeseados, btnCarrito, btnHistorial, espaciador, btnCerrarSesion);
 
         HBox fila1 = new HBox(40);
         fila1.setAlignment(Pos.CENTER);
+        fila1.setPadding(new Insets(10));
 
-        VBox alm1Box = new VBox(5, imgAlm1, btnSeleccionarAlmuerzo1, btnAgregarDeseados1, btnEditarAlmuerzo1);
+        VBox alm1Box = new VBox(10);
         alm1Box.setAlignment(Pos.CENTER);
+        alm1Box.setPrefWidth(280);
+        alm1Box.setPrefHeight(380);
+        alm1Box.getChildren().addAll(imgAlm1, btnSeleccionarAlmuerzo1, btnAgregarDeseados1, btnEditarAlmuerzo1);
 
-       VBox alm2Box = new VBox(5, imgAlm2, btnSeleccionarAlmuerzo2, btnAgregarDeseados2, btnEditarAlmuerzo2);
-
+        VBox alm2Box = new VBox(10);
         alm2Box.setAlignment(Pos.CENTER);
+        alm2Box.setPrefWidth(280);
+        alm2Box.setPrefHeight(380);
+        alm2Box.getChildren().addAll(imgAlm2, btnSeleccionarAlmuerzo2, btnAgregarDeseados2, btnEditarAlmuerzo2);
 
         fila1.getChildren().addAll(alm1Box, alm2Box);
 
         HBox fila2 = new HBox(40);
         fila2.setAlignment(Pos.CENTER);
+        fila2.setPadding(new Insets(10));
 
-        VBox bebBox = new VBox(5, imgBebida, btnSeleccionarBebida1, btnAgregarDeseados3, btnEditarBebida1);
-
+        VBox bebBox = new VBox(10);
         bebBox.setAlignment(Pos.CENTER);
+        bebBox.setPrefWidth(280);
+        bebBox.setPrefHeight(380);
+        bebBox.setStyle("-fx-border-color: red; -fx-border-width: 2;"); // TEMPORAL para debug
+        bebBox.getChildren().addAll(imgBebida, btnSeleccionarBebida1, btnAgregarDeseados3, btnEditarBebida1);
 
-VBox apeBox = new VBox(5, imgApetitivo, btnSeleccionarApetitivo1, btnAgregarDeseados4, btnEditarApetitivo1);
+        VBox apeBox = new VBox(10);
         apeBox.setAlignment(Pos.CENTER);
+        apeBox.setPrefWidth(280);
+        apeBox.setPrefHeight(380);
+        apeBox.setStyle("-fx-border-color: blue; -fx-border-width: 2;"); // TEMPORAL para debug
+        apeBox.getChildren().addAll(imgApetitivo, btnSeleccionarApetitivo1, btnAgregarDeseados4, btnEditarApetitivo1);
 
         fila2.getChildren().addAll(bebBox, apeBox);
 
@@ -174,7 +201,7 @@ VBox apeBox = new VBox(5, imgApetitivo, btnSeleccionarApetitivo1, btnAgregarDese
         root.setLeft(menuLateral);
         root.setCenter(scrollPane);
 
-        stageCatalogo.setScene(new Scene(root, 1000, 700));
+        stageCatalogo.setScene(new Scene(root, 1000, 900));
         stageCatalogo.setTitle("Catálogo");
     }
 
@@ -182,23 +209,30 @@ VBox apeBox = new VBox(5, imgApetitivo, btnSeleccionarApetitivo1, btnAgregarDese
         ImageView imageView = new ImageView();
         try {
             Image imagen = new Image(getClass().getResourceAsStream(ruta));
-            imageView.setImage(imagen);
-            imageView.setFitWidth(ancho);
-            imageView.setPreserveRatio(true);
+            if (imagen.isError()) {
+                System.err.println("ERROR al cargar imagen: " + ruta);
+            } else {
+                imageView.setImage(imagen);
+                imageView.setFitWidth(ancho);
+                imageView.setPreserveRatio(true);
+                System.out.println("Imagen cargada OK: " + ruta);
+            }
         } catch (Exception e) {
+            System.err.println("EXCEPCIÓN al cargar: " + ruta + " - " + e.getMessage());
             imageView.setFitWidth(ancho);
             imageView.setFitHeight(ancho * 0.7);
         }
         return imageView;
     }
-    private void estilizarBotonCorazon(Button b) {
-    b.setStyle("-fx-background-color: #E91E63; -fx-text-fill: white; -fx-background-radius: 20; -fx-font-size: 16px;");
-    b.setPrefWidth(50);
-}
 
     private void estilizarBotonVerde(Button b) {
         b.setStyle("-fx-background-color: #7ED957; -fx-text-fill: white; -fx-background-radius: 20;");
         b.setPrefWidth(120);
+    }
+
+    private void estilizarBotonCorazon(Button b) {
+        b.setStyle("-fx-background-color: #E91E63; -fx-text-fill: white; -fx-background-radius: 20; -fx-font-size: 16px;");
+        b.setPrefWidth(50);
     }
 
     public void mostrar() {
