@@ -68,15 +68,15 @@ public class VistaCatalogo {
 
         VBox opciones = new VBox(6, seleccionHoy, comprar, cancelar, deseadosLabel);
 
-        btnDeseados = new Button("❤️ Lista de Deseados");
+        btnDeseados = new Button(" Lista de Deseados");
         btnDeseados.setStyle("-fx-background-color: #E91E63; -fx-text-fill: white; -fx-background-radius: 15;");
         btnDeseados.setPrefWidth(160);
 
-        btnCarrito = new Button("🛒 Ver Carrito");
+        btnCarrito = new Button(" Ver Carrito");
         btnCarrito.setStyle("-fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 15;");
         btnCarrito.setPrefWidth(160);
 
-        btnHistorial = new Button("📋 Ver Historial");
+        btnHistorial = new Button("Ver Historial");
         btnHistorial.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 15;");
         btnHistorial.setPrefWidth(160);
 
@@ -106,19 +106,7 @@ public class VistaCatalogo {
         ImageView imgBebida = cargarImagen("/Recursos/Bebida1.png", 200);
         ImageView imgApetitivo = cargarImagen("/Recursos/Apetitivo1.png", 200);
 
-        System.out.println("=== VERIFICACIÓN DE IMÁGENES ===");
-        System.out.println("Almuerzo1 cargada: " + (imgAlm1.getImage() != null && !imgAlm1.getImage().isError()));
-        System.out.println("Almuerzo2 cargada: " + (imgAlm2.getImage() != null && !imgAlm2.getImage().isError()));
-        System.out.println("Bebida1 cargada: " + (imgBebida.getImage() != null && !imgBebida.getImage().isError()));
-        System.out.println("Apetitivo1 cargada: " + (imgApetitivo.getImage() != null && !imgApetitivo.getImage().isError()));
-        
-        if (imgBebida.getImage() != null) {
-            System.out.println("Bebida - Ancho: " + imgBebida.getFitWidth() + ", Alto: " + imgBebida.getFitHeight());
-        }
-        if (imgApetitivo.getImage() != null) {
-            System.out.println("Apetitivo - Ancho: " + imgApetitivo.getFitWidth() + ", Alto: " + imgApetitivo.getFitHeight());
-        }
-        System.out.println("================================");
+       
 
         btnSeleccionarAlmuerzo1 = new Button("Seleccionar");
         btnSeleccionarAlmuerzo2 = new Button("Seleccionar");

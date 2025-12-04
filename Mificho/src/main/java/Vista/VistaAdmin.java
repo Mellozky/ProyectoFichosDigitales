@@ -21,6 +21,7 @@ public class VistaAdmin {
     public Button btnEditarBebida1;
     public Button btnEditarApetitivo1;
     public Button btnCerrarSesion;
+    public Button btnHistorialGlobal;
 
     public VistaAdmin() {
         this.stageAdmin = new Stage();
@@ -55,14 +56,21 @@ public class VistaAdmin {
 
         Label gestionarItems = new Label("Gestionar productos");
         Label historial = new Label("Historial de fichos");
+        historial.setStyle("-fx-cursor: hand;");
         Label reportes = new Label("Reportes");
         Label usuarios = new Label("Administrar usuarios");
+        
 
         VBox opciones = new VBox(6, seleccionHoy, gestionarItems, historial, reportes, usuarios);
 
         btnCerrarSesion = new Button("Cerrar sesión");
         btnCerrarSesion.setStyle("-fx-background-color: #7ED957; -fx-text-fill: white; -fx-background-radius: 15;");
         btnCerrarSesion.setPrefWidth(130);
+        btnHistorialGlobal = new Button(" Ver Historial Global");
+        btnHistorialGlobal.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 15;");
+        btnHistorialGlobal.setPrefWidth(160);
+        
+        
 
         menuLateral.getChildren().addAll(lblMenu, logo, opciones, btnCerrarSesion);
 

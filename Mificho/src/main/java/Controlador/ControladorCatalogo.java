@@ -93,7 +93,23 @@ vista.btnAgregarDeseados3.setOnAction(event -> {
 vista.btnAgregarDeseados4.setOnAction(event -> {
     System.out.println("Agregar apetitivo a deseados");
 });
+vista.btnSeleccionarBebida1.setOnAction(event -> {
+    System.out.println("Seleccionada Bebida 1 - Funcionalidad pendiente");
+});
+
+vista.btnSeleccionarApetitivo1.setOnAction(event -> {
+    System.out.println("Seleccionado Apetitivo 1 - Funcionalidad pendiente");
+});
+
+vista.btnAgregarDeseados3.setOnAction(event -> {
+    System.out.println("Agregar bebida a deseados - Funcionalidad pendiente");
+});
+
+vista.btnAgregarDeseados4.setOnAction(event -> {
+    System.out.println("Agregar apetitivo a deseados - Funcionalidad pendiente");
+});
     }
+    
     
     private void agregarAlCarrito(String tipoMenu) {
         String fechaHoy = servicioProducto.obtenerFechaHoy();
@@ -101,9 +117,9 @@ vista.btnAgregarDeseados4.setOnAction(event -> {
         
         if (producto != null) {
             servicioCarrito.agregarProducto(producto, 1);
-            mostrarMensaje("✓ Producto agregado al carrito", Alert.AlertType.INFORMATION);
+            mostrarMensaje(" Producto agregado al carrito", Alert.AlertType.INFORMATION);
         } else {
-            mostrarMensaje("⚠ No hay menú disponible para hoy", Alert.AlertType.WARNING);
+            mostrarMensaje(" No hay menú disponible para hoy", Alert.AlertType.WARNING);
         }
     }
     
@@ -134,7 +150,7 @@ vista.btnAgregarDeseados4.setOnAction(event -> {
     
     if (producto != null) {
         if (servicioDeseados.agregarDeseado(idEstudianteActual, producto)) {
-            mostrarMensaje("❤ Producto agregado a deseados", Alert.AlertType.INFORMATION);
+            mostrarMensaje("Producto agregado a deseados", Alert.AlertType.INFORMATION);
         } else {
             mostrarMensaje("El producto ya está en deseados", Alert.AlertType.WARNING);
         }

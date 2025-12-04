@@ -1,6 +1,7 @@
 package Controlador;
 
 import Vista.VistaAdmin;
+import Vista.VistaHistorialAdmin;
 import javafx.application.Platform;
 
 public class ControladorAdmin {
@@ -14,7 +15,10 @@ public class ControladorAdmin {
     private void inicializar() {
         vista.btnCerrarSesion.setOnAction(event -> {
             vista.cerrar();
-            
+        });
+        
+        vista.btnHistorialGlobal.setOnAction(event -> {
+            abrirHistorialGlobal();
         });
         
         vista.btnSeleccionarAlmuerzo1.setOnAction(event -> {
@@ -48,5 +52,11 @@ public class ControladorAdmin {
         vista.btnEditarApetitivo1.setOnAction(event -> {
             System.out.println("Admin - Editar Apetitivo 1");
         });
+    }
+    
+    private void abrirHistorialGlobal() {
+        VistaHistorialAdmin vistaHistorial = new VistaHistorialAdmin();
+        new ControladorHistorialAdmin(vistaHistorial);
+        vistaHistorial.mostrar();
     }
 }
