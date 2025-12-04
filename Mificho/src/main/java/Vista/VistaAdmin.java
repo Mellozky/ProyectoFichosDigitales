@@ -29,6 +29,7 @@ public class VistaAdmin {
     }
 
     private void construirInterfaz() {
+
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #F5F5F5;");
 
@@ -54,25 +55,20 @@ public class VistaAdmin {
         Label seleccionHoy = new Label("Selección de hoy");
         seleccionHoy.setStyle("-fx-background-color: #7ED957; -fx-text-fill: white; -fx-padding: 8 10; -fx-background-radius: 15;");
 
-        Label gestionarItems = new Label("Gestionar productos");
-        Label historial = new Label("Historial de fichos");
-        historial.setStyle("-fx-cursor: hand;");
-        Label reportes = new Label("Reportes");
-        Label usuarios = new Label("Administrar usuarios");
-        
+        VBox opciones = new VBox(6, seleccionHoy);
 
-        VBox opciones = new VBox(6, seleccionHoy, gestionarItems, historial, reportes, usuarios);
+        btnHistorialGlobal = new Button(" Historial Global");
+        btnHistorialGlobal.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 15;");
+        btnHistorialGlobal.setPrefWidth(160);
 
         btnCerrarSesion = new Button("Cerrar sesión");
         btnCerrarSesion.setStyle("-fx-background-color: #7ED957; -fx-text-fill: white; -fx-background-radius: 15;");
-        btnCerrarSesion.setPrefWidth(130);
-        btnHistorialGlobal = new Button(" Ver Historial Global");
-        btnHistorialGlobal.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 15;");
-        btnHistorialGlobal.setPrefWidth(160);
-        
-        
+        btnCerrarSesion.setPrefWidth(160);
 
-        menuLateral.getChildren().addAll(lblMenu, logo, opciones, btnCerrarSesion);
+        Region espaciador = new Region();
+        VBox.setVgrow(espaciador, Priority.ALWAYS);
+
+        menuLateral.getChildren().addAll(lblMenu, logo, opciones, btnHistorialGlobal, espaciador, btnCerrarSesion);
 
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setFitToWidth(true);
@@ -88,23 +84,24 @@ public class VistaAdmin {
 
         ImageView imgAlm1 = cargarImagen("/Recursos/Almuerzo1.png", 250);
         ImageView imgAlm2 = cargarImagen("/Recursos/Almuerzo2.png", 250);
-        ImageView imgBebida = cargarImagen("/Recursos/Bebida1.png", 150);
-        ImageView imgApetitivo = cargarImagen("/Recursos/Apetitivo1.png", 150);
+        ImageView imgBebida = cargarImagen("/Recursos/Bebida1.png", 200);
+        ImageView imgApetitivo = cargarImagen("/Recursos/Apetitivo1.png", 200);
 
         btnSeleccionarAlmuerzo1 = new Button("Seleccionar");
         btnSeleccionarAlmuerzo2 = new Button("Seleccionar");
         btnSeleccionarBebida1 = new Button("Seleccionar");
         btnSeleccionarApetitivo1 = new Button("Seleccionar");
 
+        estilizarBoton(btnSeleccionarAlmuerzo1);
+        estilizarBoton(btnSeleccionarAlmuerzo2);
+        estilizarBoton(btnSeleccionarBebida1);
+        estilizarBoton(btnSeleccionarApetitivo1);
+
         btnEditarAlmuerzo1 = new Button("Editar");
         btnEditarAlmuerzo2 = new Button("Editar");
         btnEditarBebida1 = new Button("Editar");
         btnEditarApetitivo1 = new Button("Editar");
 
-        estilizarBoton(btnSeleccionarAlmuerzo1);
-        estilizarBoton(btnSeleccionarAlmuerzo2);
-        estilizarBoton(btnSeleccionarBebida1);
-        estilizarBoton(btnSeleccionarApetitivo1);
         estilizarBoton(btnEditarAlmuerzo1);
         estilizarBoton(btnEditarAlmuerzo2);
         estilizarBoton(btnEditarBebida1);
@@ -112,23 +109,37 @@ public class VistaAdmin {
 
         HBox fila1 = new HBox(40);
         fila1.setAlignment(Pos.CENTER);
+        fila1.setPadding(new Insets(10));
 
-        VBox alm1Box = new VBox(5, imgAlm1, btnSeleccionarAlmuerzo1, btnEditarAlmuerzo1);
+        VBox alm1Box = new VBox(10);
         alm1Box.setAlignment(Pos.CENTER);
+        alm1Box.setPrefWidth(280);
+        alm1Box.setPrefHeight(380);
+        alm1Box.getChildren().addAll(imgAlm1, btnSeleccionarAlmuerzo1, btnEditarAlmuerzo1);
 
-        VBox alm2Box = new VBox(5, imgAlm2, btnSeleccionarAlmuerzo2, btnEditarAlmuerzo2);
+        VBox alm2Box = new VBox(10);
         alm2Box.setAlignment(Pos.CENTER);
+        alm2Box.setPrefWidth(280);
+        alm2Box.setPrefHeight(380);
+        alm2Box.getChildren().addAll(imgAlm2, btnSeleccionarAlmuerzo2, btnEditarAlmuerzo2);
 
         fila1.getChildren().addAll(alm1Box, alm2Box);
 
         HBox fila2 = new HBox(40);
         fila2.setAlignment(Pos.CENTER);
+        fila2.setPadding(new Insets(10));
 
-        VBox bebBox = new VBox(5, imgBebida, btnSeleccionarBebida1, btnEditarBebida1);
+        VBox bebBox = new VBox(10);
         bebBox.setAlignment(Pos.CENTER);
+        bebBox.setPrefWidth(280);
+        bebBox.setPrefHeight(380);
+        bebBox.getChildren().addAll(imgBebida, btnSeleccionarBebida1, btnEditarBebida1);
 
-        VBox apeBox = new VBox(5, imgApetitivo, btnSeleccionarApetitivo1, btnEditarApetitivo1);
+        VBox apeBox = new VBox(10);
         apeBox.setAlignment(Pos.CENTER);
+        apeBox.setPrefWidth(280);
+        apeBox.setPrefHeight(380);
+        apeBox.getChildren().addAll(imgApetitivo, btnSeleccionarApetitivo1, btnEditarApetitivo1);
 
         fila2.getChildren().addAll(bebBox, apeBox);
 
@@ -138,7 +149,7 @@ public class VistaAdmin {
         root.setLeft(menuLateral);
         root.setCenter(scrollPane);
 
-        stageAdmin.setScene(new Scene(root, 1000, 700));
+        stageAdmin.setScene(new Scene(root, 1000, 900));
         stageAdmin.setTitle("Administrador");
     }
 

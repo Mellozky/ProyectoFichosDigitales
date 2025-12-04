@@ -118,15 +118,15 @@ public class VistaCatalogo {
         estilizarBotonVerde(btnSeleccionarBebida1);
         estilizarBotonVerde(btnSeleccionarApetitivo1);
 
-        btnAgregarDeseados1 = new Button("❤");
-        btnAgregarDeseados2 = new Button("❤");
-        btnAgregarDeseados3 = new Button("❤");
-        btnAgregarDeseados4 = new Button("❤");
+       btnAgregarDeseados1 = new Button("Agregar a Deseados");
+btnAgregarDeseados2 = new Button("Agregar a Deseados");
+btnAgregarDeseados3 = new Button("Agregar a Deseados");
+btnAgregarDeseados4 = new Button("Agregar a Deseados");
 
-        estilizarBotonCorazon(btnAgregarDeseados1);
-        estilizarBotonCorazon(btnAgregarDeseados2);
-        estilizarBotonCorazon(btnAgregarDeseados3);
-        estilizarBotonCorazon(btnAgregarDeseados4);
+        estilizarBotonDeseados(btnAgregarDeseados1);
+estilizarBotonDeseados(btnAgregarDeseados2);
+estilizarBotonDeseados(btnAgregarDeseados3);
+estilizarBotonDeseados(btnAgregarDeseados4);
 
         btnEditarAlmuerzo1 = new Button("Editar");
         btnEditarAlmuerzo2 = new Button("Editar");
@@ -222,6 +222,10 @@ public class VistaCatalogo {
         b.setStyle("-fx-background-color: #E91E63; -fx-text-fill: white; -fx-background-radius: 20; -fx-font-size: 16px;");
         b.setPrefWidth(50);
     }
+    private void estilizarBotonDeseados(Button b) {
+    b.setStyle("-fx-background-color: #E91E63; -fx-text-fill: white; -fx-background-radius: 20; -fx-font-size: 12px;");
+    b.setPrefWidth(150);
+}
 
     public void mostrar() {
         stageCatalogo.show();
